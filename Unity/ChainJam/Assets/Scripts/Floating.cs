@@ -10,19 +10,26 @@ public class Floating : MonoBehaviour {
 	public float InflateRate = 5f;
 	public float DeflateRate = 0.05f;
 
+	public KeyCode InflateKey;
+	public KeyCode DeflateKey;
+
 	// Use this for initialization
 	void Start () {
 
 	}
 
 	void Update() {
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(InflateKey))
 		{
 			Buoyancy += InflateRate * Time.deltaTime;
 		}
+		else if (Input.GetKey(DeflateKey))
+		{
+			Buoyancy -= InflateRate * Time.deltaTime;
+		}
 		else
 		{
-			Buoyancy -= (Buoyancy * DeflateRate) * Time.deltaTime;
+//			Buoyancy -= (Buoyancy * DeflateRate) * Time.deltaTime;
 		}
 		Buoyancy = Mathf.Clamp(Buoyancy, MinBuoyancy, MaxBuoyancy);
 
